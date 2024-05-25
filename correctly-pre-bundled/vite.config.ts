@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 // import devtools from 'solid-devtools/vite';
 
-export default defineConfig({
+export default defineConfig(() => ({
   plugins: [
     /* 
     Uncomment the following line to enable solid-devtools.
@@ -12,7 +12,14 @@ export default defineConfig({
     solidPlugin(),
   ],
   optimizeDeps: {
-    include: ["@modular-forms/solid"]
+    include: ["@modular-forms/solid"],
+    esbuildOptions: {
+      // it cannot be "preserve"
+      jsx: "automatic",
+      jsxDev: true,
+      // not familiar with solid, but it looks like the right one is "solid-js/h" and not "solid-js" 
+      jsxImportSource: "solid-js/h"
+    }
   },
   server: {
     port: 3000,
@@ -20,4 +27,4 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-});
+}));
