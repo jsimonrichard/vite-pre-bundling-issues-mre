@@ -1,0 +1,1 @@
+# Minimum Reproducible Examples for Vite Issues
